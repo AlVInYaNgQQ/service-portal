@@ -1,0 +1,49 @@
+{
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write .",
+    "test:related": "jest --bail --findRelatedTests",
+    "db:migration": "npx sequelize-cli db:migrate           --config ./apps/libs/database/config/config.js --migrations-path ./apps/libs/database/migrations/",
+    "db:migration:undo": "npx sequelize-cli db:migrate:undo --config ./apps/libs/database/config/config.js --migrations-path ./apps/libs/database/migrations/",
+    "db:seed": "npx sequelize-cli db:seed:all",
+    "db:seed:undo": "npx sequelize-cli db:seed:undo",
+    "db:seed:undo:all": "npx sequelize-cli db:migrate:undo:all"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{html,css,less,ejs}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@types/sequelize": "^4.28.20",
+    "husky": "^9.0.10",
+    "lint-staged": "^15.2.2",
+    "pg": "^8.11.3",
+    "sequelize": "^6.36.0",
+    "sequelize-typescript": "^2.1.6"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "eslint": "^8.0.1",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^3.2.5",
+    "typescript": "*"
+  }
+}
